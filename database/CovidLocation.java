@@ -5,7 +5,7 @@ public class CovidLocation
 {
 	static void main(String[] args)
 	{
-		String db = "jdbc:mysql://localhost:3036/CSCI201_Final_Database";
+		String db = "jdbc:mysql://localhost:3306/CSCI201_Final_Database";
 		String user = "root";
 		String pwd = "root";
 		
@@ -13,7 +13,9 @@ public class CovidLocation
 		
 		try(Connection con = DriverManager.getConnection(db, user, pwd); Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql))
 		{
-			//Call to transform the data into a JSON array
+			while(rs.next()) {
+				System.out.println(rs.getString("firstName"));
+			}
 		}
 		catch (SQLException e)
 		{
