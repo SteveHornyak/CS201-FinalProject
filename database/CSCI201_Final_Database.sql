@@ -43,7 +43,7 @@ covidLocationID BIGINT NOT NULL,
 yelpID VARCHAR(45),
 PRIMARY KEY (id),
 FOREIGN KEY (userID) REFERENCES userProfile(id),
-FOREIGN KEY (covidLocationID) REFERENCES covidLocation(id)
+FOREIGN KEY (covidLocationID, yelpID) REFERENCES covidLocation(id, yelpID)
 #FOREIGN KEY (yelpID) REFERENCES covidLocation(yelpID)
 );
 
@@ -55,6 +55,6 @@ CREATE TABLE UserRating(
 	userID BIGINT NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (userID) REFERENCES userProfile(id),
-	FOREIGN KEY (covidLocationID) REFERENCES covidLocation(id)
+	FOREIGN KEY (covidLocationID, yelpID) REFERENCES covidLocation(id, yelpID)
 #	FOREIGN KEY (yelpID) REFERENCES covidLocation(yelpID)
 );
