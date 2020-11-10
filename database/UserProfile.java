@@ -9,7 +9,8 @@ public class UserProfile {
 	public static String pwd = "root";
 	
 	public static void main(String[] args) {
-		ResultSet test = getData("userprofile");
+		ResultSet test = getData("userprofile","firstName");
+		System.out.println("Hi");
 		try {
 			while(test.next()) {
 				System.out.println(test.getString("firstName") + "!");
@@ -20,9 +21,9 @@ public class UserProfile {
 		}
 	}
 	
-	public static ResultSet getData(String table) {
+	public static ResultSet getData(String table, String attributes) {
 	
-		String sql = "SELECT * FROM " + "CSCI201_Final_Database." + table;
+		String sql = "SELECT " + attributes + " FROM " + "CSCI201_Final_Database." + table;
 		
 		try(Connection conn = DriverManager.getConnection(db,user,pwd);
 			Statement st = conn.createStatement();
