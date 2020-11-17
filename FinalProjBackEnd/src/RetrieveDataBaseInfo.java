@@ -44,4 +44,14 @@ public class RetrieveDataBaseInfo {
           ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
           return rs;
      }
+
+     public static boolean VerifyUser(Integer id, Connection con, String password){
+          Statement st = con.createStatement();
+          ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
+          String s = rs.getString("passwordHash");
+          if(s.equals(password)){
+               return true;
+          }
+          return false;
+     }
 }
