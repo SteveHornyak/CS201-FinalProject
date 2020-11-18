@@ -9,6 +9,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.covidsafe.webservices.objects.*;
 
 @Path("/users")
 public class LocationsEndpoint {
@@ -17,22 +18,26 @@ public class LocationsEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public LocationResponse createLocation(CreateLocation location) {
-		UserResponse res = new UserResponse();
-		/*if(!Utils.validateCreateUser(cu)) {
-			return 
+		LocationResponse lResponse = new LocationResponse();
+		if(lResponse.createLocation(location)){
+			return lResponse;
+		} else{
+			return null;
 		}
-		UserImplemention userImp = UserImplemention();
-		UserResponse res = userImp.creatUser(cu);*/
+				
 		
-		//res.setFirstName(cu.getFirstName());		
-		return res;
 	}
 	
 	@Path("/{yelpID}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public LocationResponse getLocation(@PathParam("yelpID") String yelpID) {
-		return res;
+		LocationResponse lResponse = new LocationResponse();
+		if(lResponse.getLocation(yelpID)){
+			return lResponse;
+		} else{
+			return null;
+		}
 	}
 
 	
@@ -40,6 +45,11 @@ public class LocationsEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public LocationResponse updateLocation(UpdateLocation location) {
-		return res;
+		LocationResponse lResponse = new LocationResponse();
+		if(lResponse.updateLocation(location)){
+			return lResponse;
+		} else{
+			return null;
+		}
 	}
 }

@@ -9,8 +9,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.covidsafe.webservices.objects.CreateUser;
-import com.covidsafe.webservices.objects.UserResponse;
+import com.covidsafe.webservices.objects.*;
+
 
 @Path("/users")
 public class UserEndpoint {
@@ -20,13 +20,7 @@ public class UserEndpoint {
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserResponse createUser(CreateUser cu) {
 		UserResponse res = new UserResponse();
-		/*if(!Utils.validateCreateUser(cu)) {
-			return 
-		}
-		UserImplemention userImp = UserImplemention();
-		UserResponse res = userImp.creatUser(cu);*/
-		
-		//res.setFirstName(cu.getFirstName());		
+			
 		return res;
 	}
 	
@@ -34,7 +28,7 @@ public class UserEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserResponse signInUser(SignInUser user) {
-		//UserResponse res = userImp.getUser(userID);
+		
 		UserResponse res = new UserResponse();
 		return res;
 	}
@@ -44,23 +38,8 @@ public class UserEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserResponse updateUser(UpdateUser user) {
-		//UserResponse res = userImp.getUser(userID);
+		
 		UserResponse res = new UserResponse();
 		return res;
 	}
 }
-
-
-
-
-/**
- * @Path("/{userID}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public UserResponse signInUser(@PathParam("userID") String userID) {
-		//UserResponse res = userImp.getUser(userID);
-		UserResponse res = new UserResponse();
-		res.setFirstName("I will get user with id: " + userID);
-		return res;
-	}
- */
