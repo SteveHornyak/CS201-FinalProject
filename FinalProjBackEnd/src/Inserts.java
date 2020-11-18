@@ -1,3 +1,4 @@
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,8 +8,8 @@ import java.sql.Statement;
 
 public class Inserts
 {
-	public ResultSet insertCovidLocation(String yelpID, boolean isOp, boolean isSD, boolean PU, boolean indoor, boolean outdoor,
-			boolean bath, boolean aShield, boolean uten, String ppe, double rating, String notes, boolean curb, boolean delivery, String posCovidTest, int ratings, Connection con)
+	public ResultSet insertCovidLocation(String yelpID, Boolean isOp, Boolean isSD, Boolean PU, Boolean indoor, Boolean outdoor,
+			Boolean bath, Boolean aShield, Boolean uten, Blob ppe, Float rating, String notes, Boolean curb, Boolean delivery, String posCovidTest, Integer ratings, Connection con)
 	{
 		ResultSet rs = null;
 		

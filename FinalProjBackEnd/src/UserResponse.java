@@ -4,11 +4,11 @@ public class UserResponse {
 	private String email;
 	private String phone; // NULL
 	
-	public UserResponse(String firstName, String lastName, String email, String phone) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
+	public UserResponse(CreateUser cu) {
+		this.firstName = cu.getFirstName();
+		this.lastName = cu.getLastName();
+		this.email = cu.getEmail();
+		this.phone = cu.getPhone();
 	}
 	
 }

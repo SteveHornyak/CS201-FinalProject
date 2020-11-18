@@ -1,6 +1,3 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.*;
 import java.io.*;
 import org.json.JSONArray;
@@ -12,9 +9,18 @@ public class Utilities
 {
 	//Login authenticator
 	 public static boolean VerifyUser(Integer id, Connection con, String password){
-         Statement st = con.createStatement();
-         ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
-         String s = rs.getString("passwordHash");
+		 String s = null;
+		 
+         Statement st;
+		try {
+			st = con.createStatement();
+			 ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
+	         s = rs.getString("passwordHash");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
          if(s.equals(password)){
               return true;
          }
@@ -26,7 +32,7 @@ public class Utilities
 			if(firstName!=null||lastName==null||email==null) {
 				return false;
 			}
-			// phone number maybe countrycodes? -> up to three digits. Number formatted?
+			// phone number maybe country codes? -> up to three digits. Number formatted?
 			else if(phone!=null && phone.length()>=20) {
 				return false;
 			}
@@ -40,14 +46,28 @@ public class Utilities
 		}
 
 		public static COVIDLocation GetCovidLocation(String id, String yelpID, Connection con) {
-			Statement st = con.createStatement();
-	    ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
-	    if(rs.next() == false){
-		    return null;
-	    }
-	    COVIDLocation cLocation = new COVIDLocation(rs.getInt("id"), rs.getString("yelpID"), rs.getBoolean("isOperational"), rs.getBoolean("isSocialDistancing"), rs.getBoolean("allowsPickup"),
-	    rs.getBoolean("allowsIndoorActivity"), rs.getBoolean("allowsOutDoorActivity"), rs.getBoolean("allowsBathroomUse"), rs.getBoolean("hasAcrylicShields"), rs.getBoolean("utensilsPackaged"), rs.getBlob("staffPPE"),
-	    rs.getFloat("covidReadyRating"), rs.getString("additionalNotes"), rs.getBoolean("hasCurbside"), rs.getBoolean("hasDelivery"), rs.getString("lastPositiveCovidTest"), rs.getInt("totalRatings"));
+			ResultSet rs = null;
+			
+			Statement st;
+			try {
+				st = con.createStatement();
+				rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
+				if(rs.next() == false){
+					return null;
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			
+			COVIDLocation cLocation = null;
+			try {
+				cLocation = new COVIDLocation(rs.getInt("id"), rs.getString("yelpID"), rs.getBoolean("isOperational"), rs.getBoolean("isSocialDistancing"), rs.getBoolean("allowsPickup"),
+						rs.getBoolean("allowsIndoorActivity"), rs.getBoolean("allowsOutDoorActivity"), rs.getBoolean("allowsBathroomUse"), rs.getBoolean("hasAcrylicShields"), rs.getBoolean("utensilsPackaged"), rs.getBlob("staffPPE"),
+						rs.getFloat("covidReadyRating"), rs.getString("additionalNotes"), rs.getBoolean("hasCurbside"), rs.getBoolean("hasDelivery"), rs.getString("lastPositiveCovidTest"), rs.getInt("totalRatings"));
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 			return cLocation;
 		}
@@ -57,9 +77,9 @@ public class Utilities
 				return false; 
 			}
 			Inserts inserts = new Inserts();
-			inserts.insertCovidLocation(cLocation.getId(), cLocation.getYelpID(), cLocation.getIsSocialDistancing(), cLocation.getAllowsPickup(), cLocation.getAllowsIndoorActivity(), cLocation.getAllowsOutdoorActivity(), 
+			inserts.insertCovidLocation(cLocation.getYelpID(), cLocation.getIsOperational(), cLocation.getIsSocialDistancing(), cLocation.getAllowsPickup(), cLocation.getAllowsIndoorActivity(), cLocation.getAllowsOutdoorActivity(), 
 			cLocation.getAllowsBathroomUse(), cLocation.getHasAcrylicShields(), cLocation.getUtensilsPackaged(), cLocation.getStaffPPE(), cLocation.getCovidReadyRating(), cLocation.getAdditionalNotes(), 
-			cLocation.getHasCurbside(), cLocation.getHasDelivery(), cLocation.getLastPositiveCovidTest(), ratings, con)
+			cLocation.getHasCurbside(), cLocation.getHasDelivery(), cLocation.getLastPositiveCovidTest(), cLocation.getTotalRatings(), con);
 			return true;
 		}
 

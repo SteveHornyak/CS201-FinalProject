@@ -27,5 +27,25 @@ public class CreateUser
 	{
 		return Utilities.verifyUserInfo(firstName, lastName, email, phone);
 	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
 
 }
