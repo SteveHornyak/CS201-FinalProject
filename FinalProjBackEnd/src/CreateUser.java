@@ -47,5 +47,48 @@ public class CreateUser
 	public String getPhone() {
 		return phone;
 	}
+		return this.firstName;
+	}
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getlastName() {
+		return this.lastName;
+	}
+	
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	
+	public String getemail() {
+		return this.email;
+	}
+	
+	public void setemail(String email) {
+		this.email = email;
+	}
+	
+	
+	
+	public String getpasswordHash() {
+		return this.passwordHash;
+	}
+	
+	public void setpasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+	
+	
+	
+	public String getphone() {
+		return this.phone;
+	}
+	
+	public void setphone(String phone) {
+		this.phone = phone;
+	}
 
 }
