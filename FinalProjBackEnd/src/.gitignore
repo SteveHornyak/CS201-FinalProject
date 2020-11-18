@@ -6,3 +6,6 @@
 /User.class
 /UserEndpoint.class
 /Utilities.class
+/UserResponse.class
+/CreateUser.class
+/SignInUser.class

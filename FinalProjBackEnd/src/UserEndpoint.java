@@ -31,7 +31,7 @@ public class UserEndpoint
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public UserResponse createUser(User u)
+	public UserResponse createUser(CreateUser u)
 	{
 		
 	}
