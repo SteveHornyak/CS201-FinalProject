@@ -39,4 +39,17 @@ public class Utilities
 			return true;
 		}
 
+		public static COVIDLocation GetCovidLocation(String id, String yelpID, Connection con) {
+			Statement st = con.createStatement();
+	    ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
+	    if(rs.next() == false){
+		    return null;
+	    }
+	    COVIDLocation cLocation = new COVIDLocation(rs.getInt("id"), rs.getString("yelpID"), rs.getBoolean("isOperational"), rs.getBoolean("isSocialDistancing"), rs.getBoolean("allowsPickup"),
+	    rs.getBoolean("allowsIndoorActivity"), rs.getBoolean("allowsOutDoorActivity"), rs.getBoolean("allowsBathroomUse"), rs.getBoolean("hasAcrylicShields"), rs.getBoolean("utensilsPackaged"), rs.getBlob("staffPPE"),
+	    rs.getFloat("covidReadyRating"), rs.getString("additionalNotes"), rs.getBoolean("hasCurbside"), rs.getBoolean("hasDelivery"), rs.getString("lastPositiveCovidTest"), rs.getInt("totalRatings"));
+			
+			return cLocation;
+		}
+
 }
