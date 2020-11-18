@@ -52,4 +52,15 @@ public class Utilities
 			return cLocation;
 		}
 
+		public static Boolean addLocation(COVIDLocation cLocation, Connection con){
+			if(cLocation == null){
+				return false; 
+			}
+			Inserts inserts = new Inserts();
+			inserts.insertCovidLocation(cLocation.getId(), cLocation.getYelpID(), cLocation.getIsSocialDistancing(), cLocation.getAllowsPickup(), cLocation.getAllowsIndoorActivity(), cLocation.getAllowsOutdoorActivity(), 
+			cLocation.getAllowsBathroomUse(), cLocation.getHasAcrylicShields(), cLocation.getUtensilsPackaged(), cLocation.getStaffPPE(), cLocation.getCovidReadyRating(), cLocation.getAdditionalNotes(), 
+			cLocation.getHasCurbside(), cLocation.getHasDelivery(), cLocation.getLastPositiveCovidTest(), ratings, con)
+			return true;
+		}
+
 }

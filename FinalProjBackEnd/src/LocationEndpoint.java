@@ -42,6 +42,17 @@ public class LocationEndpoint
 		
 		return new COVIDLocation();
 	}
+
+	@Path("/addLocation")
+	@SET 
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message(Response) addLocation(COVIDLocation cLocation)
+	{
+		
+	}
+
+
 	
 }
 

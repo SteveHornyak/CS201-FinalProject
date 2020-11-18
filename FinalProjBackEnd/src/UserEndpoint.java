@@ -1,7 +1,6 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -48,12 +47,7 @@ public class UserEndpoint
 	// Alternatively, we can set the password to null in user and return that??
 	public Message(Response) createUser(User u)
 	{
-		if(Utilities.verifyUserInfo(User.firstName, User.lastName, User.email, User.phone){
-			// Return message with indications of error
-		}
-		else {
-			// Return message prompting successful
-		}
+		
 	}
 	
 }
