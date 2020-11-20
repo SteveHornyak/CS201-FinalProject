@@ -35,7 +35,7 @@ public class LocationResponse{
           }
 
      public Boolean createLocation(CreateLocation loc){
-
+          try{
           this.id = loc.getId();
           this.yelpID=loc.getYelpID();
           this.isOperational=loc.getIsOperational();
@@ -75,7 +75,14 @@ public class LocationResponse{
           st.setBoolean(15, hasDelivery);
           st.setString(16, lastPositiveCovidTest);
           st.setInt(17, totalRatings);
-          return st.execute();
+          st.execute();
+          } catch (SQLException e) { //all of these functions only throw sqlerrors so that's all we can check for
+               System.out.println("Error adding location into database. See sqlexception error");
+               System.out.println(e.getMessage());
+               e.printStackTrace();
+               return false;
+          }
+          return true;
      }
 
      public Boolean getLocation(String yID){
@@ -90,13 +97,18 @@ public class LocationResponse{
               staffPPE= rs.getBlob("staffPPE");
               covidReadyRating= rs.getFloat("covidReadyRating"); additionalNotes= rs.getString("additionalNotes"); hasCurbside= rs.getBoolean("hasCurbside"); hasDelivery= rs.getBoolean("hasDelivery"); lastPositiveCovidTest= rs.getString("lastPositiveCovidTest"); totalRatings= rs.getInt("totalRatings");
               return true;
-          } catch (Exception e) {
+          } catch (SQLException e) { //all of these functions only throw sqlerrors so that's all we can check for
+               System.out.println("Error pulling location from database");
+               System.out.println(e.getMessage());
           return false;
           }   
+          return true;
      }
 
      public Boolean updateLocation(UpdateLocation loc){
-          this.id = loc.getId();
+
+          try{
+               this.id = loc.getId();
           this.yelpID=loc.getYelpID();
           this.isOperational=loc.getIsOperational();
           this.isSocialDistancing=loc.getIsSocialDistancing();
@@ -133,7 +145,15 @@ public class LocationResponse{
           st.setBoolean(13, hasDelivery);
           st.setString(14, lastPositiveCovidTest);
           st.setInt(15, totalRatings);
-          return st.execute();
+          st.execute();
+          } catch (SQLException e) { //all of these functions only throw sqlerrors so that's all we can check for
+               System.out.println("Error updating location in database. See sqlexception error");
+               System.out.println(e.getMessage());
+               e.printStackTrace();
+               return false;
+          }
+
+          return true;
      }
 
      public Integer getId() {
