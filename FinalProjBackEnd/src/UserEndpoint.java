@@ -26,7 +26,7 @@ public class UserEndpoint
 	{
 		ResultSet rs = null;
 		
-		//Check if the 
+		if(VerifyUser())
 		
 		return null;
 	}
@@ -36,9 +36,7 @@ public class UserEndpoint
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserResponse createUser(CreateUser cu)
 	{
-		UserResponse ur = new UserResponse(cu);
-		
-		return ur;
+		return new RegisterUserDao().insert(cu);
 	}
 	
 	public static void main (String[] args)
