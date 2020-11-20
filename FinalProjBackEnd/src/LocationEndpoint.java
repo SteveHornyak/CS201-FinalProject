@@ -14,25 +14,16 @@ import javax.ws.rs.core.Response;
 
 @Path("/locations")
 public class LocationEndpoint 
-{
-	private Connection conn;
-	
-	public LocationEndpoint()
-	{
-		String db = "jdbc:mysql://localhost:3036/CSCI201_Final_Database";
-		String user = "root";
-		String pwd = "root";
-		
-		conn =  DriverManager.getConnection(db, user, pwd);
-	}
-	
+{	
 	@Path("/{$yelpID}")
 	@GET 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public COVIDLocation getlocation(@PathParam("locationID") String locationID, @PathParam("yelpID") String yelpID)
+	public COVIDLocation getlocation(@PathParam("yelpID") String yelpID)
 	{
-          COVIDLocation cLocation = Utilities.GetCovidLocation(locationID, yelpID, conn);
+		String locationID = Utilities.SearchLocationID(yelpID, LocationDAO.getConnection());
+		
+        COVIDLocation cLocation = Utilities.GetCovidLocation(locationID, yelpID, LocationDAO.getConnection());
 		if(cLocation != null)
 		{
 			return cLocation;
@@ -40,17 +31,22 @@ public class LocationEndpoint
 		else {
 			return null;
 		}
-		
-		return new COVIDLocation();
 	}
 
 	@Path("/addLocation")
 	@PUT 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Message(Response) addLocation(COVIDLocation cLocation)
+	public COVIDLocation addLocation(COVIDLocation cLocation)
 	{
-		
+		Boolean added = Utilities.addLocation(cLocation, LocationDAO.getConnection());
+		if(added)
+		{
+			return cLocation;
+		}
+		else {
+			return null;
+		}
 	}
 
 

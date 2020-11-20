@@ -1,8 +1,5 @@
 import java.sql.*;
 import java.io.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONException;
 
 
 public class Utilities
@@ -81,6 +78,30 @@ public class Utilities
 			cLocation.getAllowsBathroomUse(), cLocation.getHasAcrylicShields(), cLocation.getUtensilsPackaged(), cLocation.getStaffPPE(), cLocation.getCovidReadyRating(), cLocation.getAdditionalNotes(), 
 			cLocation.getHasCurbside(), cLocation.getHasDelivery(), cLocation.getLastPositiveCovidTest(), cLocation.getTotalRatings(), con);
 			return true;
+		}
+		
+		public static String SearchLocationID(String yelpid, Connection con)
+		{
+			String s = null;
+			ResultSet rs = null;
+			
+			Statement st;
+			try
+			{
+				st = con.createStatement();
+				rs = st.executeQuery("SELECT id FROM UserRating WHERE yelpID = " + yelpid.toString());
+				if(rs.next() == false)
+				{
+					return null;
+				}
+				
+				s = rs.getString("id");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return s;
 		}
 
 }
