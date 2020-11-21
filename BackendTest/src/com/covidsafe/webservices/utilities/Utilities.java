@@ -2,6 +2,7 @@ package com.covidsafe.webservices.utilities;
 import java.sql.*;
 import java.io.*;
 import com.covidsafe.webservices.objects.COVIDLocation;
+import com.covidsafe.webservices.objects.CreateUser;
 
 
 
@@ -28,21 +29,27 @@ public class Utilities
     }
 	 
 	 //Verifying correct or acceptable user input
-		public static boolean verifyUserInfo(String firstName, String lastName, String email, String phone) {
-			if(firstName!=null||lastName==null||email==null) {
-				return false;
+		public static String verifyUserInfo(CreateUser user) {
+			if(user.getFirstName()==null) {
+				return "Failed. First name can't be empty.";
+			}
+			else if(user.getLastName()==null) {
+				return "Failed. Last name can't be empty.";
+			}
+			else if(user.getEmail()==null) {
+				return "Failed. E-mail can't be empty.";
 			}
 			// phone number maybe country codes? -> up to three digits. Number formatted?
-			else if(phone!=null && phone.length()>=20) {
-				return false;
+			else if(user.getPhone()!=null && user.getPhone().length()>=20) {
+				return "Failed. Invalid phone number format.";
 			}
-			else if(!email.contains("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
-				return false;
+			else if(!user.getEmail().matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")) {
+				return "Failed. Invalid email format.";
 			}
-			else if(firstName.contains("\s") || lastName.contains("\s")) {
-				return false;
+			else if(user.getFirstName().contains("\s") || user.getLastName().contains("\s")) {
+				return "Failed. Name can't contain spaces.";
 			}
-			return true;
+			return "Success";
 		}
 
 		public static COVIDLocation GetCovidLocation(String id, String yelpID, Connection con) {
