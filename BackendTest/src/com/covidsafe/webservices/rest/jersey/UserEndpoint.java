@@ -1,7 +1,6 @@
 package com.covidsafe.webservices.rest.jersey;
 
 
-import java.sql.Connection;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -16,14 +15,13 @@ import com.covidsafe.webservices.objects.UserResponse;
 @Path("/users")
 public class UserEndpoint 
 {	
-	private static Connection conn;
 	
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public SignInUser signInUser(SignInUser u)
+	public UserResponse signInUser(SignInUser u)
 	{
-		return u;
+		return new LoginUserDao().signin(u);
 	}
 	
 	@PUT

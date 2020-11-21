@@ -5,7 +5,6 @@ public class SignInUser {
 	private String passwordHash;
 	private String email;
 	
-	
 	public String getpasswordHash() {
 		return this.passwordHash;
 	}
