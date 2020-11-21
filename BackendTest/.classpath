@@ -14,30 +14,34 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/aopalliance-repackaged-2.3.0-b10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/asm-debug-all-5.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/hk2-api-2.3.0-b10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/hk2-locator-2.3.0-b10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/hk2-utils-2.3.0-b10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/javassist-3.18.1-GA.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/javax.annotation-api-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/javax.inject-2.3.0-b10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/javax.servlet-api-3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/javax.ws.rs-api-2.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jaxb-api-2.2.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-client.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-common.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-container-servlet.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-container-servlet-core.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-core-1.9.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-guava-2.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-media-multipart-2.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/jersey-server.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/mimepull.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/org.osgi.core-4.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/osgi-resource-locator-1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/persistence-api-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/jerseyjars/validation-api-1.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Terry/OneDrive/Documents/mysql-connector-java-8.0.22/mysql-connector-java-8.0.22.jar"/>
+	<classpathentry kind="lib" path="resources/aopalliance-repackaged-2.3.0-b10.jar"/>
+	<classpathentry kind="lib" path="resources/asm-debug-all-5.0.2.jar"/>
+	<classpathentry kind="lib" path="resources/hk2-api-2.3.0-b10.jar"/>
+	<classpathentry kind="lib" path="resources/hk2-locator-2.3.0-b10.jar"/>
+	<classpathentry kind="lib" path="resources/hk2-utils-2.3.0-b10.jar"/>
+	<classpathentry kind="lib" path="resources/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="resources/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="resources/javax.inject-2.3.0-b10.jar"/>
+	<classpathentry kind="lib" path="resources/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="resources/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="resources/jaxb-api-2.2.7.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-client.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-common.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-container-servlet.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-container-servlet-core.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-core-1.9.1.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-guava-2.13.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-media-multipart-2.13.jar"/>
+	<classpathentry kind="lib" path="resources/jersey-server.jar"/>
+	<classpathentry kind="lib" path="resources/mimepull.jar"/>
+	<classpathentry kind="lib" path="resources/mysql-connector-java-8.0.22.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="resources/org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="resources/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="resources/persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="resources/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
