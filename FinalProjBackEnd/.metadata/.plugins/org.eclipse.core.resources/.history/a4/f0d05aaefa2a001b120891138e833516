@@ -1,0 +1,10 @@
+package src;
+
+public class LocationDAO 
+{
+	private String db = "jdbc:mysql://localhost:3036/CSCI201_Final_Database";
+	private String user = "root";
+	private String pwd = "root";
+	
+	
+}

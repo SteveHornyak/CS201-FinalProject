@@ -3,6 +3,9 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.Blob"/>
     <fullyQualifiedTypeName name="javax.ws.rs.PUT"/>
+<<<<<<< Updated upstream
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="src.LocationDAO"/>
+=======
+>>>>>>> Stashed changes
 </qualifiedTypeNameHistroy>
