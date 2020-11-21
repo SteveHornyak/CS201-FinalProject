@@ -8,9 +8,9 @@ import com.covidsafe.webservices.objects.CreateUser;
 import com.covidsafe.webservices.objects.UserResponse;
 
 public class RegisterUserDao {
-	String db = "jdbc:mysql://localhost:3306/CSCI201_Final_Database";
-    String user = "root";
-    String pwd = "root";
+	static String db = "jdbc:mysql://localhost:3306/CSCI201_Final_Database";
+    static String user = "root";
+    static String pwd = "root";
     
     public Connection getConnection() {
     	Connection conn = null;
@@ -25,9 +25,10 @@ public class RegisterUserDao {
     
     // needs to add 
     public UserResponse insert(CreateUser user) {
+    	System.out.println(user.toString());
     	Connection conn = this.getConnection();
     	String status = "Successful";
-    	String sql = "INSERT INTO UserProfile (firstName, lastName, email, passwordHash, phone) VALUES (?,?,?,?)";
+    	String sql = "INSERT INTO UserProfile (firstName, lastName, email, passwordHash, phone) VALUES (?,?,?,?,?)";
     	try {
     		PreparedStatement ps = conn.prepareStatement(sql);
     		ps.setString(1,user.getFirstName());

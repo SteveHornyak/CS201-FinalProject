@@ -28,32 +28,6 @@ import java.io.*;
           String lastPositiveCovidTest;
           Integer totalRatings;
         
-
-
-         public COVIDLocation(Integer id, String yelpID,  Boolean isOperational, Boolean isSocialDistancing,  Boolean allowsPickup, Boolean allowsIndoorActivity,
-         Boolean allowsOutdoorActivity, Boolean allowsBathroomUse,  Boolean hasAcrylicShields,  Boolean utensilsPackaged, Blob staffPPE, Float covidReadyRating,
-         String additionalNotes, Boolean hasCurbside, Boolean hasDelivery, String lastPositiveCovidTest, Integer totalRatings) {
-          
-          this.id = id;
-          this.yelpID=yelpID;
-          this.isOperational=isOperational;
-          this.isSocialDistancing=isSocialDistancing;
-          this.allowsPickup=allowsPickup;
-          this.allowsIndoorActivity=allowsIndoorActivity;
-          this.allowsOutdoorActivity=allowsOutdoorActivity;
-          this.allowsBathroomUse=allowsBathroomUse;
-          this.hasAcrylicShields=hasAcrylicShields;
-          this.utensilsPackaged=utensilsPackaged;
-          this.staffPPE=staffPPE;
-          this.covidReadyRating=covidReadyRating;
-          this.additionalNotes=additionalNotes;
-          this.hasCurbside=hasCurbside;
-          this.hasDelivery=hasDelivery;
-          this.lastPositiveCovidTest=lastPositiveCovidTest;
-          this.totalRatings=totalRatings;
-          
-          }
-        
           public Integer getId() {
              return this.id;
           }
