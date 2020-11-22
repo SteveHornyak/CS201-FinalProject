@@ -35,7 +35,7 @@ public class AddLocationDao
     		ps.setBoolean(8, cl.getHasAcrylicShields());
     		ps.setBoolean(9, cl.getUtensilsPackaged());
     		ps.setBlob(10, cl.getStaffPPE());
-    		ps.setFloat(11, cl.getCovidReadyRating());
+    		ps.setFloat(11, cl.getCovidReadyRating()); 
     		ps.setString(12, cl.getAdditionalNotes());
     		ps.setBoolean(13, cl.getHasCurbside());
     		ps.setBoolean(14, cl.getHasDelivery());

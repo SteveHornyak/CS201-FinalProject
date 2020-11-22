@@ -37,7 +37,7 @@ public class LocationEndpoint
 	public LocationResponse addLocation(CovidLocation cLocation)
 	{
 		return new AddLocationDao().insert(cLocation);
-	}
+	} 
 
 
 	

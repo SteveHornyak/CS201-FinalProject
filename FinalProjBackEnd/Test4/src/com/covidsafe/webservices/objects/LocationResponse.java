@@ -25,7 +25,7 @@ public class LocationResponse
 	private String result;
 	
 	public LocationResponse(Integer id, CovidLocation cl, String result)
-	{
+	{ 
 		this.id = id;
 		this.yelpID = cl.getYelpID();
 		this.isOperational = cl.getIsOperational();

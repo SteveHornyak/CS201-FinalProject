@@ -29,7 +29,7 @@ public class CovidLocation
 		this.isOperational = isOp;
 		this.isSocialDistancing = isSD;
 		this.allowsPickup = pu;
-		this.allowsIndoorActivity = IA;
+		this.allowsIndoorActivity = IA; 
 		this.allowsOutdoorActivity = OA;
 		this.allowsBathroomUse = Bath;
 		this.hasAcrylicShields = AS;
