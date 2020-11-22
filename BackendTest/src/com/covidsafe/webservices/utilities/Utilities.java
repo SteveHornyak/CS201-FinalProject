@@ -1,33 +1,13 @@
 package com.covidsafe.webservices.utilities;
 import java.sql.*;
 import java.io.*;
-import com.covidsafe.webservices.objects.COVIDLocation;
+import com.covidsafe.webservices.objects.CovidLocation;
 import com.covidsafe.webservices.objects.CreateUser;
 
 
 
 public class Utilities
 {
-	//Login authenticator
-	 public static boolean VerifyUser(Integer id, Connection con, String password){
-		 String s = null;
-		 
-         Statement st;
-		try {
-			st = con.createStatement();
-			 ResultSet rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
-	         s = rs.getString("passwordHash");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-         if(s.equals(password)){
-              return true;
-         }
-         return false;
-    }
-	 
 	 //Verifying correct or acceptable user input
 		public static String verifyUserInfo(CreateUser user) {
 			if(user.getFirstName()==null) {
@@ -52,7 +32,7 @@ public class Utilities
 			return "Success";
 		}
 
-		public static COVIDLocation GetCovidLocation(String id, String yelpID, Connection con) {
+		public static CovidLocation GetCovidLocation(String id, String yelpID, Connection con) {
 			ResultSet rs = null;
 			
 			Statement st;
@@ -67,9 +47,9 @@ public class Utilities
 			}
 			
 			
-			COVIDLocation cLocation = null;
+			CovidLocation cLocation = null;
 			try {
-				cLocation = new COVIDLocation(rs.getInt("id"), rs.getString("yelpID"), rs.getBoolean("isOperational"), rs.getBoolean("isSocialDistancing"), rs.getBoolean("allowsPickup"),
+				cLocation = new CovidLocation(rs.getInt("id"), rs.getString("yelpID"), rs.getBoolean("isOperational"), rs.getBoolean("isSocialDistancing"), rs.getBoolean("allowsPickup"),
 						rs.getBoolean("allowsIndoorActivity"), rs.getBoolean("allowsOutDoorActivity"), rs.getBoolean("allowsBathroomUse"), rs.getBoolean("hasAcrylicShields"), rs.getBoolean("utensilsPackaged"), rs.getBlob("staffPPE"),
 						rs.getFloat("covidReadyRating"), rs.getString("additionalNotes"), rs.getBoolean("hasCurbside"), rs.getBoolean("hasDelivery"), rs.getString("lastPositiveCovidTest"), rs.getInt("totalRatings"));
 			} catch (SQLException e) {
