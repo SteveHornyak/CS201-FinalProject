@@ -16,25 +16,41 @@ public class AddLocationDao
 	{
     	Connection conn = DbUtil.getConnection();
     	Integer curr_id = null;
+    	String status = null;
     	
-    	String sql = "INSERT INTO UserProfile (yelpID, isOperational, isSocialDistancing,  email, passwordHash, phone) VALUES (?,?,?,?,?)";
+    	String sql = "INSERT INTO UserProfile (yelpID, isOperational, isSocialDistancing, allowsPickup, allowsIndoorActivity, "
+    			+ "allowsOutdoorActivity, allowsBathroomUse, hasAcrylicShields, utensilsPackaged, staffPPE, covidReadyRating, additionalNotes, "
+    			+ "hasCurbside, hasDelivery, lastPositiveCovidTest, totalRatings) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     	String sql2 = "SELECT id FROM csci201_final_database.covidLocation WHERE yelpID = (?)";
     	try
     	{
     		PreparedStatement ps = conn.prepareStatement(sql);
-    		ps.setString(1,user.getFirstName());
-    		ps.setString(2,user.getLastName());
-    		ps.setString(3,user.getEmail());
-    		ps.setString(4, user.getPasswordHash());
-    		ps.setString(5,user.getPhone());
+    		ps.setString(1,cl.getYelpID());
+    		ps.setBoolean(2, cl.getIsOperational());
+    		ps.setBoolean(3, cl.getIsOperational());
+    		ps.setBoolean(4, cl.getAllowsPickup());
+    		ps.setBoolean(5, cl.getAllowsIndoorActivity());
+    		ps.setBoolean(6, cl.getAllowsOutdoorActivity());
+    		ps.setBoolean(7, cl.getAllowsBathroomUse());
+    		ps.setBoolean(8, cl.getHasAcrylicShields());
+    		ps.setBoolean(9, cl.getUtensilsPackaged());
+    		ps.setBlob(10, cl.getStaffPPE());
+    		ps.setFloat(11, cl.getCovidReadyRating());
+    		ps.setString(12, cl.getAdditionalNotes());
+    		ps.setBoolean(13, cl.getHasCurbside());
+    		ps.setBoolean(14, cl.getHasDelivery());
+    		ps.setString(15, cl.getLastPositiveCovidTest());
+    		ps.setInt(16, cl.getTotalRatings());
     		ps.executeUpdate();
     		PreparedStatement ps2 = conn.prepareStatement(sql2);
-    		ps2.setString(1, user.getEmail());
+    		ps2.setString(1, cl.getYelpID());
     		ResultSet rslt = ps2.executeQuery();
     		while(rslt.next())
     		{
     			curr_id = rslt.getInt("id");
     		}
+    		
+    		status = "Successful";
     	}
     	catch(SQLException e) {
     		e.printStackTrace();

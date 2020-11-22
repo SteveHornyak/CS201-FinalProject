@@ -1,3 +1,6 @@
-GitRepositoriesView.GitDirectories=C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\.git;
-GitRepositoriesView.GitDirectories.relative=C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\.git;
+GitRepositoriesView.GitDirectories=C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\BackendTest\\.git;C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\.git;
+GitRepositoriesView.GitDirectories.relative=C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\BackendTest\\.git;C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\.git;
+RepositorySearchDialogDeepSearch=false
+RepositorySearchDialogSearchPath=C\:\\Users\\Steve Hornyak\\Documents\\GitHub\\CS201-FinalProjectBE\\BackendTest
+RepositorySearchDialogSkipHidden=true
 eclipse.preferences.version=1
