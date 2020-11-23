@@ -1,20 +1,11 @@
 package com.covidsafe.webservices.objects;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.*;
-import java.io.*;
-//import org.json.JSONArray;
-//import org.json.JSONObject;
-//import org.json.JSONException;
-
 public class CreateUser 
 {
 	private String firstName; 
 	private String lastName;
 	private String email;
-	private String passwordHash;
+	private String password;		
 	private String phone; // NULL
 	
 	public String getFirstName() {
@@ -35,11 +26,11 @@ public class CreateUser
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPasswordHash() {
-		return passwordHash;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getPhone() {
 		return phone;

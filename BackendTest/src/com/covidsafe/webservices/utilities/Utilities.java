@@ -1,7 +1,7 @@
 package com.covidsafe.webservices.utilities;
-import java.sql.*;
-import java.io.*;
-import com.covidsafe.webservices.objects.CovidLocation;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import com.covidsafe.webservices.objects.CreateUser;
 
 
@@ -31,43 +31,25 @@ public class Utilities
 			}
 			return "Success";
 		}
-
-		public static CovidLocation GetCovidLocation(String id, String yelpID, Connection con) {
-			ResultSet rs = null;
-			
-			Statement st;
+		
+		public static String hashPassword(String password) {
+			MessageDigest digest = null;
 			try {
-				st = con.createStatement();
-				rs = st.executeQuery("SELECT * FROM UserRating WHERE id = " + id.toString());
-				if(rs.next() == false){
-					return null;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			
-			
-			CovidLocation cLocation = null;
-			try {
-				cLocation = new CovidLocation(rs.getInt("id"), rs.getString("yelpID"), rs.getBoolean("isOperational"), rs.getBoolean("isSocialDistancing"), rs.getBoolean("allowsPickup"),
-						rs.getBoolean("allowsIndoorActivity"), rs.getBoolean("allowsOutDoorActivity"), rs.getBoolean("allowsBathroomUse"), rs.getBoolean("hasAcrylicShields"), rs.getBoolean("utensilsPackaged"), rs.getBlob("staffPPE"),
-						rs.getFloat("covidReadyRating"), rs.getString("additionalNotes"), rs.getBoolean("hasCurbside"), rs.getBoolean("hasDelivery"), rs.getString("lastPositiveCovidTest"), rs.getInt("totalRatings"));
-			} catch (SQLException e) {
+				digest = MessageDigest.getInstance("SHA-256");
+			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();
 			}
-			
-			return cLocation;
-		}
-
-//		public static Boolean addLocation(COVIDLocation cLocation, Connection con){
-//			if(cLocation == null){
-//				return false; 
-//			}
-//			Inserts inserts = new Inserts();
-//			inserts.insertCovidLocation(cLocation.getYelpID(), cLocation.getIsOperational(), cLocation.getIsSocialDistancing(), cLocation.getAllowsPickup(), cLocation.getAllowsIndoorActivity(), cLocation.getAllowsOutdoorActivity(), 
-//			cLocation.getAllowsBathroomUse(), cLocation.getHasAcrylicShields(), cLocation.getUtensilsPackaged(), cLocation.getStaffPPE(), cLocation.getCovidReadyRating(), cLocation.getAdditionalNotes(), 
-//			cLocation.getHasCurbside(), cLocation.getHasDelivery(), cLocation.getLastPositiveCovidTest(), cLocation.getTotalRatings(), con);
-//			return true;
-//		}
+			byte[] hash = digest.digest(
+			  password.getBytes(StandardCharsets.UTF_8));
+			  StringBuilder hexString = new StringBuilder(2 * hash.length);
+			    for (int i = 0; i < hash.length; i++) {
+			        String hex = Integer.toHexString(0xff & hash[i]);
+			        if(hex.length() == 1) {
+			            hexString.append('0');
+			        }
+			        hexString.append(hex);
+			    }
+			    return hexString.toString();
+			}
 
 }

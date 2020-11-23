@@ -5,14 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.ws.rs.core.Response;
+
 import com.covidsafe.webservices.objects.CovidLocation;
+import com.covidsafe.webservices.objects.ErrorEntity;
 import com.covidsafe.webservices.objects.LocationResponse;
 import com.covidsafe.webservices.utilities.DbUtil;
-import com.covidsafe.webservices.utilities.Utilities;
 
 public class AddLocationDao
 {
-	public LocationResponse insert(CovidLocation cl)
+	public Response insert(CovidLocation cl)
 	{
     	Connection conn = DbUtil.getConnection();
     	Integer curr_id = null;
@@ -21,7 +23,7 @@ public class AddLocationDao
     	String sql = "INSERT INTO CovidLocation (yelpID, isOperational, isSocialDistancing, allowsPickup, allowsIndoorActivity, "
     			+ "allowsOutdoorActivity, allowsBathroomUse, hasAcrylicShields, utensilsPackaged, staffPPE, covidReadyRating, additionalNotes, "
     			+ "hasCurbside, hasDelivery, lastPositiveCovidTest, totalRatings) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    	String sql2 = "SELECT id FROM csci201_final_database.CovidLocation WHERE yelpID = (?)";
+    	String sql2 = "SELECT id FROM CSCI201_Final_Database.CovidLocation WHERE yelpID = (?)";
     	try
     	{
     		PreparedStatement ps = conn.prepareStatement(sql);
@@ -54,9 +56,18 @@ public class AddLocationDao
     	}
     	catch(SQLException e) {
     		e.printStackTrace();
-    		status = "YelpID already registered!";
+    		status = e.getMessage();
+    		return Response.status(403)
+                    .entity(new ErrorEntity(status))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "*")
+                    .header("Access-Control-Allow-Headers", "*").build();
     	}
     	LocationResponse result = new LocationResponse(curr_id, cl, status);
-    	return result;
+    	return Response.ok()
+                .entity(result)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "*")
+                .header("Access-Control-Allow-Headers", "*").build();
     }
 }

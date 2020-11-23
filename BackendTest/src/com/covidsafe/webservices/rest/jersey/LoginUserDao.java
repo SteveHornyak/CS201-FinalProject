@@ -5,12 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.ws.rs.core.Response;
+
+import com.covidsafe.webservices.objects.ErrorEntity;
 import com.covidsafe.webservices.objects.SignInUser;
 import com.covidsafe.webservices.objects.UserResponse;
 import com.covidsafe.webservices.utilities.DbUtil;
+import com.covidsafe.webservices.utilities.Utilities;
 
 public class LoginUserDao {
-	public UserResponse signin(SignInUser user) {
+	public Response signin(SignInUser user) {
 		Connection conn = DbUtil.getConnection();
 		
 		String status = "Failed. Invalid Password";
@@ -21,7 +25,7 @@ public class LoginUserDao {
 		String curr_phone = null;
 		
 		
-		String sql = "SELECT * FROM csci201_final_database.userprofile WHERE email = (?)";
+		String sql = "SELECT * FROM CSCI201_Final_Database.UserProfile WHERE email = (?)";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1,user.getemail());
@@ -29,7 +33,7 @@ public class LoginUserDao {
 			String currPasswordHash = null;
 			while(rs.next()) {
 				 currPasswordHash = rs.getString("passwordHash");
-				if(user.getpasswordHash().equals(currPasswordHash)) {
+				if(Utilities.hashPassword(user.getpassword()).equals(currPasswordHash)) {
 					status = "Success";
 					curr_id = rs.getInt("id");
 					curr_firstName = rs.getString("firstName");
@@ -41,9 +45,19 @@ public class LoginUserDao {
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
-			return new UserResponse(null,null, null, null, null, "SQL Exception");
+    		status = e.getMessage();
+			 return Response.status(403)
+	                .entity(new ErrorEntity(status))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "*")
+                    .header("Access-Control-Allow-Headers", "*").build();
 		}
-		return new UserResponse(curr_id,curr_firstName,curr_lastName,curr_email,curr_phone,status);
-		
+		UserResponse result =  new UserResponse(curr_id,curr_firstName,curr_lastName,curr_email,curr_phone,status);
+
+    	return Response.ok()
+                .entity(result)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "*")
+                .header("Access-Control-Allow-Headers", "*").build();	
 	}
 }

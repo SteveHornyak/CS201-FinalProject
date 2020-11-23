@@ -7,6 +7,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;  
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.covidsafe.webservices.objects.CreateUser;
 import com.covidsafe.webservices.objects.SignInUser;
@@ -15,19 +16,20 @@ import com.covidsafe.webservices.objects.UserResponse;
 @Path("/users")
 public class UserEndpoint 
 {	
-	
+	@Path("/login")
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public UserResponse signInUser(SignInUser u)
+	public Response signInUser(SignInUser u)
 	{
 		return new LoginUserDao().signin(u);
 	}
 	
-	@PUT
+	@Path("/register")
+	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public UserResponse createUser(CreateUser cu)
+	public Response createUser(CreateUser cu)
 	{
 		return new RegisterUserDao().insert(cu);
 	}

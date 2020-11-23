@@ -2,15 +2,15 @@ package com.covidsafe.webservices.objects;
 
 public class SignInUser {
 	
-	private String passwordHash;
+	private String password;
 	private String email;
 	
-	public String getpasswordHash() {
-		return this.passwordHash;
+	public String getpassword() {
+		return this.password;
 	}
 	
-	public void setpasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 	
 	public String getemail() {
