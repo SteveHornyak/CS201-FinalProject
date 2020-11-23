@@ -1,5 +1,4 @@
 package com.covidsafe.webservices.objects;
-import java.sql.*;
 	
      
 public class CovidLocation

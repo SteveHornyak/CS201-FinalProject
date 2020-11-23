@@ -1,6 +1,5 @@
 package com.covidsafe.webservices.rest.jersey;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

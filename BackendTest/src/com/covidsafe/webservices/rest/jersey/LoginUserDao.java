@@ -23,6 +23,7 @@ public class LoginUserDao {
 		String curr_lastName = null;
 		String curr_email = null;
 		String curr_phone = null;
+		String currPasswordHash = null;
 		
 		
 		String sql = "SELECT * FROM CSCI201_Final_Database.UserProfile WHERE email = (?)";
@@ -30,8 +31,8 @@ public class LoginUserDao {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1,user.getemail());
 			ResultSet rs = ps.executeQuery();
-			String currPasswordHash = null;
-			if(rs.next() == false) {
+
+			if(!rs.isBeforeFirst()) {
 				return Response.status(403)
 		                .entity(new ErrorEntity("Incorrect Password"))
 		                .header("Access-Control-Allow-Origin", "*")
@@ -63,7 +64,7 @@ public class LoginUserDao {
 
 		if(status!="Success") {
 			return Response.status(403)
-	                .entity(new ErrorEntity("Incorrect Password"))
+	                .entity(new ErrorEntity(currPasswordHash))
 	                .header("Access-Control-Allow-Origin", "*")
 	                .header("Access-Control-Allow-Methods", "*")
 	                .header("Access-Control-Allow-Headers", "*").build();	
