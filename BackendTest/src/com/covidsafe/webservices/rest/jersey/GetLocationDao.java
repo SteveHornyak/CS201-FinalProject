@@ -78,6 +78,14 @@ public class GetLocationDao
 		LocationResponse result =  new LocationResponse(curr_id,curr_yelpID,isOp,
 				isSD,pu,IA,OA,Bath,AS,uten,ppe,crr,notes,curb,
 				deliv,posCovidTest,ratings,status);
+		
+		if(status!="Success") {
+			return Response.status(404)
+	                .entity(new ErrorEntity(status))
+	                .header("Access-Control-Allow-Origin", "*")
+	                .header("Access-Control-Allow-Methods", "*")
+	                .header("Access-Control-Allow-Headers", "*").build();		
+		}
 
     	return Response.ok()
                 .entity(result)

@@ -24,7 +24,7 @@ public class RegisterUserDao {
     	String status = Utilities.verifyUserInfo(user);
     	if(status!="Success") {
     		return Response.status(403)
-                    .entity(new Error(status))
+                    .entity(new ErrorEntity(status))
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "*")
                     .header("Access-Control-Allow-Headers", "*").build();
@@ -49,11 +49,20 @@ public class RegisterUserDao {
     	catch(SQLIntegrityConstraintViolationException e) {
     		e.printStackTrace();
     		status = "Email/Phone Already Registered!";
-        	return Response.status(403)
-                    .entity(new ErrorEntity(status))
-                    .header("Access-Control-Allow-Origin", "*")
-                    .header("Access-Control-Allow-Methods", "*")
-                    .header("Access-Control-Allow-Headers", "*").build();
+    		if(e.getMessage().contains("email")){
+        		return Response.status(403)
+                        .entity(new ErrorEntity("Email Already Registered!"))
+                        .header("Access-Control-Allow-Origin", "*")
+                        .header("Access-Control-Allow-Methods", "*")
+                        .header("Access-Control-Allow-Headers", "*").build();
+    		}
+    		else {
+            		return Response.status(403)
+                            .entity(new ErrorEntity("Phone Already Registered!"))
+                            .header("Access-Control-Allow-Origin", "*")
+                            .header("Access-Control-Allow-Methods", "*")
+                            .header("Access-Control-Allow-Headers", "*").build();
+    		}
     	}
     	catch(SQLException e) {
     		e.printStackTrace();

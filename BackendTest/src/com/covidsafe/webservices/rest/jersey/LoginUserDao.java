@@ -31,6 +31,13 @@ public class LoginUserDao {
 			ps.setString(1,user.getemail());
 			ResultSet rs = ps.executeQuery();
 			String currPasswordHash = null;
+			if(rs.next() == false) {
+				return Response.status(403)
+		                .entity(new ErrorEntity("Incorrect Password"))
+		                .header("Access-Control-Allow-Origin", "*")
+		                .header("Access-Control-Allow-Methods", "*")
+		                .header("Access-Control-Allow-Headers", "*").build();	
+			}
 			while(rs.next()) {
 				 currPasswordHash = rs.getString("passwordHash");
 				if(Utilities.hashPassword(user.getpassword()).equals(currPasswordHash)) {
@@ -54,6 +61,13 @@ public class LoginUserDao {
 		}
 		UserResponse result =  new UserResponse(curr_id,curr_firstName,curr_lastName,curr_email,curr_phone,status);
 
+		if(status!="Success") {
+			return Response.status(403)
+	                .entity(new ErrorEntity("Incorrect Password"))
+	                .header("Access-Control-Allow-Origin", "*")
+	                .header("Access-Control-Allow-Methods", "*")
+	                .header("Access-Control-Allow-Headers", "*").build();	
+		}
     	return Response.ok()
                 .entity(result)
                 .header("Access-Control-Allow-Origin", "*")

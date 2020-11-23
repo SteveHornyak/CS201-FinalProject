@@ -1,7 +1,5 @@
 package com.covidsafe.webservices.objects;
 
-import java.sql.Blob;
-
 public class LocationResponse
 {
 	private Integer id;
